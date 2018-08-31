@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { AuthenticationService } from '../shared/services/index';
 import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/util';
- 
+import { AuthenticationModel } from '../shared/Models/authenticationModel';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -11,8 +11,10 @@ import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/
     animations: [routerTransition()]
 })
 export class LoginComponent implements OnInit {
+    model: any = {};
+    authenticationModel: AuthenticationModel
     returnUrl: string;
-     
+
     constructor(public router: Router,
         public route: ActivatedRoute,
         public authenticationService: AuthenticationService
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
     }
 
     onLoggedin() {
-        this.authenticationService.login()
+        this.authenticationModel = { username: this.model.username, password: this.model.password };
+        this.authenticationService.login(this.authenticationModel)
             .subscribe(
                 data => {
                     // login successful so redirect to return url

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpModule  } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,9 +10,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import{AuthenticationService} from './shared/services/index';
-
- 
+import { AuthenticationService } from './shared/services/index';
+import { FormsModule } from '@angular/forms';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -30,6 +30,8 @@ export const createTranslateLoader = (http: HttpClient) => {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        FormsModule,
+        HttpModule,
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -40,7 +42,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard,AuthenticationService],
+    providers: [AuthGuard, AuthenticationService],
     bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
