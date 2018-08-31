@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from '../router.animations';
 import { AuthenticationService } from '../shared/services/index';
 import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/util';
-
+ 
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
@@ -12,6 +12,7 @@ import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/
 })
 export class LoginComponent implements OnInit {
     returnUrl: string;
+     
     constructor(public router: Router,
         public route: ActivatedRoute,
         public authenticationService: AuthenticationService
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
                         this.returnUrl = '/register';
                     }
                     this.router.navigate([this.returnUrl]);
-                    
+
                 },
                 error => {
                     alert("Error on Login")
