@@ -10,7 +10,7 @@ export class AuthenticationService {
     headers: Headers;
     options: RequestOptions;
     // private apiUrl = 'http://localhost:64781/api/Values/Login?userName=7095448855&password=12345';
-    private apiUrl = 'http://localhost:64781/api/Values/';
+    private apiUrl = 'http://localhost:62258/api/Authentication/AuthenticateUser';
     constructor(private http: Http) {
         this.headers = new Headers({
             'Content-Type': 'application/json',
@@ -18,28 +18,29 @@ export class AuthenticationService {
         });
         this.options = new RequestOptions({ headers: this.headers });
     }
-    // login() {
-    //     return this.http.get(this.commentsUrl)
-    //         // ...now we return data
+
+    // login(param: any): Observable<any> {
+    //     this.apiUrl = this.apiUrl + '/Authentication/AuthenticateUser';
+    //     let params: URLSearchParams = new URLSearchParams();
+    //     for (var key in param) {
+    //         if (param.hasOwnProperty(key)) {
+    //             let val = param[key];
+    //             params.set(key, val);
+    //         }
+    //     }
+    //     this.options = new RequestOptions({ headers: this.headers, search: params });
+
+    //     return this.http
+    //         .get(this.apiUrl, this.options)
     //         .map(res => res)
-    //         // ...errors if any
     //         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     // }
     login(param: any): Observable<any> {
-        this.apiUrl = this.apiUrl + 'Login';
-        let params: URLSearchParams = new URLSearchParams();
-        for (var key in param) {
-            if (param.hasOwnProperty(key)) {
-                let val = param[key];
-                params.set(key, val);
-            }
-        }
-        this.options = new RequestOptions({ headers: this.headers, search: params });
-       
-        return this.http
-            .get(this.apiUrl, this.options)
-            .map(res => res)
-            .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+        return this.http.post(this.apiUrl, JSON.stringify(param), {
+            headers: this.headers,
+        }).map((res: Response) => (
+            res.json()
+        )).catch((error: any) => Observable.throw(error.json().error || 'Server error'));
     }
     logout() {
         localStorage.removeItem('isLoggedin');

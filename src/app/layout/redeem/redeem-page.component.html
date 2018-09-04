@@ -1,0 +1,29 @@
+<div [@routerTransition]>
+    <div class="row">
+       
+        <div class="col col-xl-12 col-lg-12">
+             
+            <div class="card mb-12">
+                <div class="card-header">Redeem Log History</div>
+                <div class="card-body table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th *ngFor="let col of columnHeaders">
+                                {{col}}
+                              </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let char of data | async">
+                                <td *ngFor="let col of columns">
+                                    {{char[col]}}
+                                </td>
+                              </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

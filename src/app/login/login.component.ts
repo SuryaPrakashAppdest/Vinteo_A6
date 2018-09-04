@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
                         this.returnUrl = '/register';
                     }
                     this.router.navigate([this.returnUrl]);
-
                 },
                 error => {
                     alert("Error on Login")
