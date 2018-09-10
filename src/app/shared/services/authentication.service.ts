@@ -18,23 +18,6 @@ export class AuthenticationService {
         });
         this.options = new RequestOptions({ headers: this.headers });
     }
-
-    // login(param: any): Observable<any> {
-    //     this.apiUrl = this.apiUrl + '/Authentication/AuthenticateUser';
-    //     let params: URLSearchParams = new URLSearchParams();
-    //     for (var key in param) {
-    //         if (param.hasOwnProperty(key)) {
-    //             let val = param[key];
-    //             params.set(key, val);
-    //         }
-    //     }
-    //     this.options = new RequestOptions({ headers: this.headers, search: params });
-
-    //     return this.http
-    //         .get(this.apiUrl, this.options)
-    //         .map(res => res)
-    //         .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
-    // }
     login(param: any): Observable<any> {
         return this.http.post(this.apiUrl, JSON.stringify(param), {
             headers: this.headers,

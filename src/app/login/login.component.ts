@@ -28,14 +28,17 @@ export class LoginComponent implements OnInit {
 
     onLoggedin() {
         this.authenticationModel = { username: this.model.username, password: this.model.password };
+
         this.authenticationService.login(this.authenticationModel)
             .subscribe(
                 data => {
-                    // login successful so redirect to return url
-                    localStorage.setItem('isLoggedin', 'true');
-                    this.returnUrl = '/dashboard';
-                    if (!data["UserName"]) {
-                        this.returnUrl = '/register';
+                    if (!data) {
+                        alert("No userfound..Please register.")
+                        this.returnUrl = '/signup';
+                    }
+                    else {
+                        localStorage.setItem('isLoggedin', 'true');
+                        this.returnUrl = '/dashboard';
                     }
                     this.router.navigate([this.returnUrl]);
                 },
