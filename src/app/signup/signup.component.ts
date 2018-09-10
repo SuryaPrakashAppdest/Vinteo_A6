@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import { AuthenticationService } from '../shared/services/index';
+import { allowPreviousPlayerStylesMerge } from '@angular/animations/browser/src/util';
+import { RegisterModel } from '../shared/Models/registerModel';
 
 @Component({
     selector: 'app-signup',
@@ -8,7 +12,16 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class SignupComponent implements OnInit {
-    constructor() {}
+    model: any = {};
+    registerModel: RegisterModel
+    returnUrl: string;
+    constructor(public router: Router,
+        public route: ActivatedRoute,
+        public authenticationService: AuthenticationService
+    ) { }
 
-    ngOnInit() {}
+    ngOnInit() { }
+    onRegister() {
+        alert(this.model.username)
+    }
 }

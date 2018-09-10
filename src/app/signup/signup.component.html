@@ -3,24 +3,26 @@
         <div class="col-md-4">
             <img class="user-avatar" src="assets/images/logo.png" width="150px" />
             <h1>Vinteo Admin</h1>
-            <form role="form">
+            <form role="form" name="form" #f="ngForm" novalidate>
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Full Name">
+                        <input type="text" [(ngModel)]="model.username" required name="username" class="form-control input-underline input-lg" id="" placeholder="User Name">
                     </div>
 
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Email">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+                        <input type="text" [(ngModel)]="model.emailId" name="emailId" required class="form-control input-underline input-lg" id="" placeholder="Email">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Repeat Password">
+                        <input type="text" [(ngModel)]="model.mobileNo" name="mobileNo" required class="form-control input-underline input-lg" id="" placeholder="Mobile No">
                     </div>
+                    <div class="form-group">
+                        <input type="password" [(ngModel)]="model.password" name="password" required class="form-control input-underline input-lg" id="" placeholder="Password">
+                    </div>
+                    
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']"> Register </a>&nbsp;
+                <!-- <a class="btn rounded-btn" [routerLink]="['/dashboard']"> Register </a>&nbsp;
+                <a class="btn rounded-btn" [routerLink]="['/login']"> Log in </a> -->
+                <a class="btn rounded-btn" (click)="f.form.valid && onRegister()"> Register </a>
                 <a class="btn rounded-btn" [routerLink]="['/login']"> Log in </a>
             </form>
         </div>
