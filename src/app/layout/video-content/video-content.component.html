@@ -1,0 +1,26 @@
+<div [@routerTransition]>
+
+    <div class="row">
+        <div *ngFor="let video of data | async" class="col col-sm-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <b> Approved:</b>{{video.IsApproved}};
+                    <b> Points:</b>{{video.TotalMarks}};
+                    <b> Questions:</b>0;
+                    <button class="btn btn-info btn-sm">Edit</button>
+                </div>
+                <div class="card-body">
+                    <!-- <iframe width="450" height="345" src="https://www.youtube.com/embed/VFDZHPaMIbc?autoplay=1">
+                    </iframe> -->
+                    <iframe width="450" height="345" [src]='videoUrl(video.VideoCode)' >
+                    </iframe>
+                </div>
+                <!-- <div class="card-footer">
+                <button class="btn btn-info btn-sm" >Edit</button>
+            </div> -->
+            </div>
+        </div>
+         
+    </div>
+     
+</div>

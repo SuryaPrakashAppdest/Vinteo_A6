@@ -16,7 +16,8 @@ const routes: Routes = [
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
-            { path: 'redeem-page', loadChildren: './redeem/redeem-page.module#RedeemPageModule' }
+            { path: 'redeem-page', loadChildren: './redeem/redeem-page.module#RedeemPageModule' },
+            { path: 'video-content', loadChildren: './video-content/video-content.module#VideoContentModule' }
         ]
     }
 ];
@@ -25,4 +26,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class LayoutRoutingModule {}
+export class LayoutRoutingModule { }

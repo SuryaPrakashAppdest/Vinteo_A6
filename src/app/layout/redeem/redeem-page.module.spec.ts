@@ -1,6 +1,7 @@
 import { RedeemPageModule } from './redeem-page.module';
 
-describe('BlankPageModule', () => {
+
+describe('RedeemPageModule', () => {
     let redeemPageModule: RedeemPageModule;
 
     beforeEach(() => {

@@ -9,6 +9,7 @@ import 'rxjs/add/observable/throw';
 export class AdminReportService {
     options: RequestOptions;
     private apiUrl = 'http://localhost:62258/api/Vinteo/RedeemLog';
+    private videoContentUrl = 'http://localhost:62258/api/Vinteo/VideoContent?catagoryId=1';
     private userId = 1;
     constructor(private http: Http) {
         let headers: Headers = new Headers();
@@ -25,6 +26,15 @@ export class AdminReportService {
 
         return this.http
             .get(this.apiUrl, this.options)
+            .map((res: Response) => (
+                res.json() 
+            ))
+            .catch ((error: any) => Observable.throw(error.json().error || 'Server error'));
+    }
+    getVideoContentList(): Observable<any> {
+
+        return this.http
+            .post(this.videoContentUrl, this.options)
             .map((res: Response) => (
                 res.json()
             ))
