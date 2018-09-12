@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+
 
 @Component({
     selector: 'app-sidebar',
@@ -12,10 +13,11 @@ export class SidebarComponent {
     collapsed: boolean = false;
     showMenu: string = '';
     pushRightClass: string = 'push-right';
-
+    returnUrl: string;
     @Output() collapsedEvent = new EventEmitter<boolean>();
-    
-    constructor(private translate: TranslateService, public router: Router) {
+
+    constructor(private translate: TranslateService, public router: Router, public route: ActivatedRoute,
+    ) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
         const browserLang = this.translate.getBrowserLang();
@@ -31,7 +33,9 @@ export class SidebarComponent {
             }
         });
     }
-
+    ngOnInit() {
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
     eventCalled() {
         this.isActive = !this.isActive;
     }
@@ -70,5 +74,12 @@ export class SidebarComponent {
 
     onLoggedout() {
         localStorage.removeItem('isLoggedin');
+    }
+
+    getVideoContentById(value: string) {
+        // this.getVideoContentById(value);
+        localStorage.setItem('catagoryId', value);
+        this.returnUrl = '/video-content';
+        this.router.navigate([this.returnUrl]);
     }
 }

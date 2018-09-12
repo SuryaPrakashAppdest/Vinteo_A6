@@ -45,21 +45,57 @@
                 <li class="nested" [class.expand]="showMenu === 'pages'">
                     <ul class="submenu">
                         <li>
-                            <a href="javascript:void(0)">
+                            <a (click)="getVideoContentById(-1)">
                                 <i class="fa fa-monument"></i>&nbsp;
                                 <span>{{ 'All Catagories' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">
+                            <a (click)="getVideoContentById(1)">
                                 <i class="fa fa-monument"></i>&nbsp;
-                                <span>{{ 'Submenu' | translate }}</span>
+                                <span>{{ 'Kids' | translate }}</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">
+                            <a (click)="getVideoContentById(2)">
                                 <i class="fa fa-monument"></i>&nbsp;
-                                <span>{{ 'Submenu' | translate }}</span>
+                                <span>{{ 'Comedy' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="getVideoContentById(3)">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Video Songs' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="getVideoContentById(4)">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Puzzles' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="getVideoContentById(5)">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Technology' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="getVideoContentById(6)">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Motivation' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="getVideoContentById(7)">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Talk Of Town' | translate }}</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a (click)="getVideoContentById(8)">
+                                <i class="fa fa-monument"></i>&nbsp;
+                                <span>{{ 'Sports' | translate }}</span>
                             </a>
                         </li>
                     </ul>

@@ -29,6 +29,9 @@ export class VideoContentComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(urlMain);
   }
   ngOnInit() {
-    this.data = this.adminReportService.getVideoContentList();
+    this.data = this.getVideoList();
+  }
+  getVideoList() {
+    return this.adminReportService.getVideoContentList(localStorage.getItem('catagoryId'));
   }
 }
