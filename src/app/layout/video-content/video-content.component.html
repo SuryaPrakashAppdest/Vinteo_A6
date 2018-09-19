@@ -7,20 +7,31 @@
                     <b> Approved:</b>{{video.IsApproved}};
                     <b> Points:</b>{{video.TotalMarks}};
                     <b> Questions:</b>0;
-                    <button class="btn btn-info btn-sm">Edit</button>
+                    <button class="btn btn-info btn-sm" (click)="open(content,video.VideoCode)">Edit</button>
                 </div>
                 <div class="card-body">
-                    <!-- <iframe width="450" height="345" src="https://www.youtube.com/embed/VFDZHPaMIbc?autoplay=1">
+                    <!-- <iframe width="450" height="345" [src]='videoUrl(video.VideoCode)'>
                     </iframe> -->
-                    <iframe width="450" height="345" [src]='videoUrl(video.VideoCode)' >
-                    </iframe>
+                    <img [src]="videoImgUrl(video.VideoCode)" width="450" height="345"/>
                 </div>
-                <!-- <div class="card-footer">
-                <button class="btn btn-info btn-sm" >Edit</button>
-            </div> -->
             </div>
         </div>
-         
+
     </div>
-     
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">Video Name</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <iframe width="450" height="345" [src]='popUpVideoUrl(url)'>
+            </iframe>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+        </div>
+    </ng-template>
+
 </div>

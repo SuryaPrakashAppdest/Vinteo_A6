@@ -13,7 +13,7 @@ import { AuthGuard } from './shared';
 import { AuthenticationService, AdminReportService } from './shared/services/index';
 import { FormsModule } from '@angular/forms';
 import { DataService } from './shared/services/DataService';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -41,7 +41,8 @@ export const createTranslateLoader = (http: HttpClient) => {
                 deps: [HttpClient]
             }
         }),
-        AppRoutingModule
+        AppRoutingModule,
+        NgbModule.forRoot()
     ],
     declarations: [AppComponent],
     providers: [AuthGuard, AuthenticationService, AdminReportService, DataService],
