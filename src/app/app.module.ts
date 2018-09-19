@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { AuthenticationService, AdminReportService } from './shared/services/index';
 import { FormsModule } from '@angular/forms';
+import { DataService } from './shared/services/DataService';
+
 
 // AoT requires an exported function for factories
 export const createTranslateLoader = (http: HttpClient) => {
@@ -42,7 +44,7 @@ export const createTranslateLoader = (http: HttpClient) => {
         AppRoutingModule
     ],
     declarations: [AppComponent],
-    providers: [AuthGuard, AuthenticationService, AdminReportService],
+    providers: [AuthGuard, AuthenticationService, AdminReportService, DataService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

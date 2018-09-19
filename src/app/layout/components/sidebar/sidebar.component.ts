@@ -1,8 +1,7 @@
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-
-
+import { DataService } from '../../../shared/services/DataService';
 @Component({
     selector: 'app-sidebar',
     templateUrl: './sidebar.component.html',
@@ -14,9 +13,11 @@ export class SidebarComponent {
     showMenu: string = '';
     pushRightClass: string = 'push-right';
     returnUrl: string;
+    videoCatagoryId: number;
     @Output() collapsedEvent = new EventEmitter<boolean>();
 
     constructor(private translate: TranslateService, public router: Router, public route: ActivatedRoute,
+        private dataservice: DataService
     ) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
         this.translate.setDefaultLang('en');
@@ -76,9 +77,8 @@ export class SidebarComponent {
         localStorage.removeItem('isLoggedin');
     }
 
-    getVideoContentById(value: string) {
-        // this.getVideoContentById(value);
-        localStorage.setItem('catagoryId', value);
+    getVideoContentById(value: number) {
+        this.dataservice.setCatId(value);
         this.returnUrl = '/video-content';
         this.router.navigate([this.returnUrl]);
     }

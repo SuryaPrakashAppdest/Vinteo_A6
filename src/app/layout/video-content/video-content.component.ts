@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { AdminReportService } from '../../shared/services/index';
 import { Observable } from 'rxjs/Observable';
-
+import { DataService } from '../../shared/services/DataService';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-video-content',
@@ -14,24 +15,42 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class VideoContentComponent implements OnInit {
   closeResult: string;
-
   data: Observable<Array<any>>;
-  // private frameUrl = 'https://www.youtube.com/embed/VFDZHPaMIbc?autoplay=1'
+  catagoryId: number;
   constructor(public router: Router,
     public route: ActivatedRoute,
     public adminReportService: AdminReportService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private dataService: DataService,
+    private location: Location
   ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    };
 
+    this.router.events.subscribe((evt) => {
+      if (evt instanceof NavigationEnd) {
+        this.router.navigated = false;
+        window.scrollTo(0, 0);
+      }
+    });
   }
   videoUrl(code) {
     var urlMain = "https://www.youtube.com/embed/" + code + "?autoplay=1";
     return this.sanitizer.bypassSecurityTrustResourceUrl(urlMain);
   }
+
   ngOnInit() {
-    this.data = this.getVideoList();
+
+    this.dataService.currentCatId.subscribe(catId => {
+      this.catagoryId = catId;
+    }, err => {
+      console.log(err);
+    });
+    this.data = this.getVideoList(this.catagoryId);
+
   }
-  getVideoList() {
-    return this.adminReportService.getVideoContentList(localStorage.getItem('catagoryId'));
+  getVideoList(value: number) {
+    return this.adminReportService.getVideoContentList(value.toString());
   }
 }
