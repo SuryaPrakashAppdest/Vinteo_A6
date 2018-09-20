@@ -46,6 +46,7 @@ export class VideoContentComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustResourceUrl(urlMain);
   }
 
+
   ngOnInit() {
 
     this.dataService.currentCatId.subscribe(catId => {
@@ -59,9 +60,12 @@ export class VideoContentComponent implements OnInit {
   getVideoList(value: number) {
     return this.adminReportService.getVideoContentList(value.toString());
   }
+  loadQuestionByVideo(videoId: number) {
+
+  }
   // Model Content starts here..
-  open(content, id: string) {
-    this.url = id;
+  open(content, videoCode: string) {
+    this.url = videoCode;
     this.modalService.open(content).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
